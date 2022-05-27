@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 将图片转换为base64格式
+      function transformBase64(image) {
+        const canvans = document.createElement('canvas');
+        canvans.width = image.width;
+        canvans.height = image.height;
+        const context = canvans.getContext('2d');
+        context.drawImage(image, 0, 0, image.width, image.height);
+        const ext = image.src.substring(image.src.lastIndexOf('.') + 1).toLowerCase();
+        const base64 = canvans.toDataURL('image/' + ext);
+        return base64;
+      }
+
+      const image = new Image();
+      image.src = './images/src=http___up.enterdesk.com_edpic_360_360_c8_5d_59_c85d595ed206fa63bb7bc7d7d9d17353.jpg&refer=http___up.enterdesk.jpeg';
+      image.onload = () => {
+        console.log(transformBase64(image));
+      };
+      document.body.appendChild(image);
+    </script>
+  </body>
+</html>
